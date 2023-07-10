@@ -1,1 +1,0 @@
-//Components with the options for each card

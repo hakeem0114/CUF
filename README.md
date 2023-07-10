@@ -4,7 +4,7 @@ A university filter/eligibility parser for Canadian students
 
 
 ## Tools
-Tailwind, react router
+Tailwind, react router, npm install @headlessui/react
 
 
 # CUF_server

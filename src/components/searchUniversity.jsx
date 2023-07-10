@@ -1,1 +1,0 @@
-//Search box to show recommended university being typed in 
