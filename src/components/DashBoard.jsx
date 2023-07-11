@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 //Replaces the findCards after user has finished entering them
 
 // () loading circle to wait for dashboard with graphs to load
@@ -21,10 +22,13 @@
 //Api Imports
 
 
-const DashBoard = () => {
+const DashBoard = (props) => {
   return (
     <div>
        Dashboard
+      <br />
+      <p>{props.universityName}</p>
+
     </div>
   )
 }
