@@ -9,7 +9,7 @@ import DashBoard from '../components/DashBoard'
 
 //Style Imports
 import bodyImage from '../assets/bodyAssets/body2.jpg'
-
+import { Triangle } from  'react-loader-spinner'
 
 //Api Imports
 import universityData from '../api/getApi'
@@ -18,6 +18,7 @@ import universityData from '../api/getApi'
 
 /************3rd Page To give a summary of each university**********/
 const University = () => {
+
 
   /******HANDLE API CALL******/
   //console.log(universityData())
@@ -39,16 +40,7 @@ const University = () => {
       })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  // console.log(eachUiversity)
 
-  // eachUiversity.map((data)=>{
-  //   return(
-  //     console.log(data.name)
-  //   )
-  // })
-
-
-  // console.log(eachUiversity[0].name)
 
   /******HANDLE DASHBOARD******/
   const[createDashBoard, setCreateDashBoard] = useState(false)
@@ -77,7 +69,7 @@ const University = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault()
-    console.log(formData.univDropDown)
+   // console.log(formData.univDropDown)
 
     //Update Dashboard
    setCreateDashBoard(!createDashBoard)
@@ -89,6 +81,7 @@ const University = () => {
     setTap(true)
   }
 
+  
 
 
   return (
@@ -134,12 +127,30 @@ const University = () => {
                     {createDashBoard &&(
                                          <div className='absolute z-20  w-5/6 h-5/6 bg-bodyTurquoise border-2 rounded-md shadow shadow-bodyGold border-zinc-500 flex justify-center items-center'> 
                                             <DashBoard
-                                                universityName={formData.univDropDown}
+                                                selectedUniversity={formData.univDropDown}
+                                                generalData = {eachUiversity}
                                             />
                                         </div>
                     )}
           </>
         )
+      }
+
+      {/***LOADING ITEM**/}
+      {!eachUiversity &&
+          (
+              <div className='absolute text-bodyGold'>
+                  <Triangle
+                    height="300"
+                    width="300"
+                    color="#BFA181"
+                    ariaLabel="triangle-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                  />
+              </div>
+          )
       }
 
       {/* </div> */}

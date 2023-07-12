@@ -22,12 +22,28 @@
 //Api Imports
 
 
+/*********DASHBOARD SETUP*******/
 const DashBoard = (props) => {
+
+  
+
+  /****GENERAL DASHBOARD SETUP****/
+  const allData = props.generalData
+  
+
+  /****DEPENDENT DASHBOARD SETUP****/ //Use a grid  & map answers over them 
+
+  //Create 2 charts based on email notes
+  //https://react-chartjs-2.js.org/
+
+  
+
+
   return (
     <div>
        Dashboard
       <br />
-      <p>{props.universityName}</p>
+      <p>{props.selectedUniversity}</p>
 
     </div>
   )
