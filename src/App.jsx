@@ -1,12 +1,11 @@
 //React Imports
-import { useEffect, useState } from 'react'
+//import { useEffect, useState } from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
   createRoutesFromElements,
   Route,
   Outlet,
-  ScrollRestoration,
 
 } from "react-router-dom";
 
@@ -27,7 +26,7 @@ import Footer from './components/Footer'
 import './App.css'
 
 //Api Imports
-import universityData from './api/getApi'
+//import universityData from './api/getApi'
 
 
 
@@ -35,23 +34,8 @@ import universityData from './api/getApi'
 /***************************MAIN APP**********************/
 function App() {
 
-  //console.log(universityData())
-  const [eachUiversity, setUniversityData] = useState()
 
-  //Render once on page load
-  useEffect(()=>{
-
-    universityData()
-      .then((data)=>{
-          setUniversityData(data.data.universityData)
-        
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
-
+  
 
 //Inside App Router Component (Nav & Footer)
 function PageLayout(){
@@ -74,8 +58,6 @@ const router = createBrowserRouter(
     <Route path="/CUF" element={<Home />}/>
 
     <Route path="/CUF/Find"  element={<PageLayout />}  >
-           
-            {/* <Route path="/CUF/Home/Find" element={<Find/>} loader={eachUiversity} /> */}
             <Route path="/CUF/Find" element={<Find/>}  />
             <Route path="/CUF/Find/University" element={<University/>}  />
             
