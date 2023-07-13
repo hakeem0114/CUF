@@ -69,7 +69,7 @@ const University = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault()
-   // console.log(formData.univDropDown)
+    console.log(formData.univDropDown)
 
     //Update Dashboard
    setCreateDashBoard(!createDashBoard)
@@ -114,7 +114,7 @@ const University = () => {
                                                       
                                                     </select>
 
-                                                    <button className='border-2 w-1/6 p-2 rounded-br-xl rounded-tr-xl bg-bodyBlue text-lg text-bodyGold hover:bg-slate-300 transition-all delay-75 ease-in-out duration-300'>
+                                                    <button className='border-2 w-2/6 p-2 rounded-br-xl rounded-tr-xl bg-bodyBlue text-lg text-bodyGold hover:bg-slate-300 transition-all delay-75 ease-in-out duration-300'>
                                                         Search
                                                     </button>
                                               </form>
@@ -125,7 +125,7 @@ const University = () => {
                       {/****UNIVERSITY SEARCH**/}
                       
                     {createDashBoard &&(
-                                         <div className='absolute z-20  w-5/6 h-5/6 bg-bodyTurquoise border-2 rounded-md shadow shadow-bodyGold border-zinc-500 flex justify-center items-center'> 
+                                         <div className='absolute z-20  w-5/6 h-5/6  bg-bodyBlue border-2 rounded-md shadow shadow-bodyGold border-zinc-500 flex justify-center items-center'> 
                                             <DashBoard
                                                 selectedUniversity={formData.univDropDown}
                                                 generalData = {eachUiversity}
