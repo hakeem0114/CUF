@@ -19,6 +19,20 @@ const Find = () => {
 
   //const universityData = useLoaderData()
 
+
+
+
+
+
+
+  /*****QUESTIONNAIRE ****/
+
+  /*****OPTION A: TOP 3 PICKS BY US OR****/
+
+  /*****OPTION B: SELECT YOUR 1ST CHOICE****/
+
+
+
   return (
     <div className='relative z-0 flex justify-center items-center'>
        <img className=' z-0 w-full h-screen object-cover' src={bodyImage} alt="bodyImage" /> 

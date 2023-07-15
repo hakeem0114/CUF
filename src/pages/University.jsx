@@ -48,7 +48,7 @@ const University = () => {
 
   /******HANDLE FORM INPUT*******/
   const [formData, setFormData] = useState({
-     univDropDown:''
+     univDropDown:'Algoma University'
   })
     
   const handleChange=(e)=>{
@@ -69,7 +69,7 @@ const University = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault()
-    console.log(formData.univDropDown)
+    //console.log(formData.univDropDown)
 
     //Update Dashboard
    setCreateDashBoard(!createDashBoard)
