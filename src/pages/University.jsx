@@ -30,7 +30,6 @@ const University = () => {
     universityData()
       .then((data)=>{
           
-      // console.log(data.data.universityData)
           if(data.data.universityData){
             setUniversityData(data.data.universityData)
           }
@@ -88,7 +87,6 @@ const University = () => {
     <div className='relative z-0 flex justify-center items-center'>
        <img className=' z-0 w-full h-screen object-cover' src={bodyImage} alt="bodyImage" /> 
 
-      {/* <div className='w-full h-full flex flex-col'> */}
                     {/****SEARCH BAR TO RENDER DASHBOARD***/}
       {eachUiversity &&
         (

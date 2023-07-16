@@ -13,7 +13,7 @@
 
 /***********CARD COMPONENTS**********/
 
-const FindCard = () => {
+const Questionnaire = () => {
   return (
     <div className="flex justify-center">
       Card
@@ -21,4 +21,4 @@ const FindCard = () => {
   )
 }
 
-export default FindCard
+export default Questionnaire

@@ -5,7 +5,7 @@
 //Page Imports
 
 //Component Imports 
-import FindCard from '../components/FindCard'
+import Questionnaire from '../components/Questionnaire'
 
 
 //Style Imports
@@ -18,11 +18,6 @@ import bodyImage from '../assets/bodyAssets/body.jpg'
 const Find = () => {
 
   //const universityData = useLoaderData()
-
-
-
-
-
 
 
   /*****QUESTIONNAIRE ****/
@@ -39,8 +34,8 @@ const Find = () => {
 
 
         {/****QUESTIONS**/}
-       <div className='absolute z-20  w-2/3 h-2/3 bg-bodyTurquoise border-2 border-zinc-500 flex justify-center items-center'> 
-          <FindCard/>
+       <div className='absolute z-20  w-5/6 h-5/6  bg-bodyTurquoise border-2 border-zinc-500 flex justify-center items-center'> 
+          <Questionnaire/>
        </div>
     </div>
   )

@@ -111,18 +111,19 @@ const DashBoard = (props) => {
       //console.log(allUniversityNames, allGeneralGrades)
 
   //Pie: Canadian vs Foreign Student Undergrad tuition
-      const cadTuition = selectedUniversityData.undergradTuition.split('-').pop().replace(/[$]/g, '').trim()
-      const foreignTuition = selectedUniversityData.undergradTuitionForeign.split('-').pop().replace(/[$]/g, '').trim()
+      const cadTuition = selectedUniversityData.undergradTuition.split('-').pop().replace(/[$,]/g, '').trim()
+      const foreignTuition = selectedUniversityData.undergradTuitionForeign.split('-').pop().replace(/[$,]/g, '').trim()
   
-    //  console.log(cadTuition, foreignTuition)
+     console.log(cadTuition, foreignTuition)
 
   /****DEPENDENT DASHBOARD SETUP****/ //Multiple useStates to render specific divs to the dashboard
       //Get props from find page
 
-  //Create 2 charts based on email notes
-  //https://react-chartjs-2.js.org/
-
-  
+      
+  /****REFRESH PAGE ONCLICK****/
+  const handleClick= ()=>{
+      window.location.reload();
+  }
 
 console.log(uniName)
   return (
@@ -170,10 +171,14 @@ console.log(uniName)
                     <Analytics
                         names={allUniversityNames}
                         grades={allGeneralGrades}
-                        {...cadTuition}
-                        {...foreignTuition}
+                        cadTuition = {cadTuition}
+                        foreignTuition = {foreignTuition}
                     />
               </div>
+
+              <button onClick={handleClick} className="transition-all ease-in-out duration-300 p-7 mb-5 bg-purple-500 font-extrabold  rounded-2xl hover:scale-[1.02] ">
+                  GO BACK
+              </button>
 
         </div>
                 
