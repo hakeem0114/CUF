@@ -121,7 +121,8 @@ const DashBoard = (props) => {
 
       
   /****REFRESH PAGE ONCLICK****/
-  const handleClick= ()=>{
+  const handleClick= (e)=>{
+      e.preventDefault()
       window.location.reload();
   }
 

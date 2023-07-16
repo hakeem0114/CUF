@@ -1,0 +1,90 @@
+
+
+  
+export const json = {
+    "title": "CUF Questionnaire",
+    "description": "Please fill in the form to check your university eligility",
+    "logo": findLogo,
+    "questionErrorLocation": "bottom",
+    "logoHeight": "100px",
+    "logoFit": "cover",
+    "logoPosition": "right",
+    "elements": [
+      {
+        "type": "dropdown",
+        "name": "position",
+        "title": "Are you a canadian or foreign student?",
+        "choices": [{
+                      "value": "canadian",
+                      "text": "Canadian Student"
+                    }, {
+                      "value": "foreign",
+                      "text": "Foreign Student"
+                    }],
+        "isRequired": true,
+      },
+      {
+        "type": "dropdown",
+        "name": "position",
+        "title": "What is your chosen major?",
+        "choices": [{
+                      "value": "engineering",
+                      "text": "Engineering"
+                    }, {
+                      "value": "science",
+                      "text": "Sciences"
+                    }, {
+                      "value": "commerce",
+                      "text": "Commerce/Business"
+                    }, {
+                      "value": "art",
+                      "text": "Art"
+                    }
+                  ],
+        "isRequired": true,
+      },
+      {
+        "type": "dropdown",
+        "name": "position",
+        "title": "What is your grade average?",
+        "choices": choice,
+        "isRequired": true,
+      },
+      {
+        "name": "number",
+        "type": "text",
+        "title": "Enter your tuition budget",
+        "description": "No spaces or symbols",
+        "inputType": "number",
+        "isRequired": true,
+        "validators": [{
+          "type": "number",
+        }]
+      },
+      {
+        "type": "dropdown",
+        "name": "position",
+        "title": "Select your top university or view your best match",
+        "choices": [{
+                      "value": "top",
+                      "text": "Top University"
+                    }, {
+                      "value": "best",
+                      "text": "Best Match"
+                    }],
+        "isRequired": true,
+      },
+      {
+        "type": "dropdown",
+        "name": "position",
+        "description": "If you selected the best match above, skip this question",
+        "title": "Select your chosen university",
+        "choices": allNames,
+      },
+  
+  ],
+    "showQuestionNumbers": true,
+    "completeText": "Send",
+    "widthMode": "static",
+    "width": "800px"
+  };
