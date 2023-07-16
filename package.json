@@ -20,6 +20,7 @@
     "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.14.1",
+    "react-toastify": "^9.1.3",
     "survey-core": "^1.9.97",
     "survey-react-ui": "^1.9.97"
   },

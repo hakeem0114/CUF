@@ -1,106 +1,117 @@
+//Style Imports
+import findLogo from '../../assets/bodyAssets/findLogo.png'
+//Api Imports
+import universityData from '../../api/getApi'
+
+
+//Grade Range
+const gradeRange = Array.from({ length: 41 }, (_, index) => 60 + index);
+const choice  = gradeRange.map((value)=>(
+  {
+    value: value.toString(),
+    text: value.toString(),
+  }
+))
+
+//University Names
+const allNames = []
+         universityData()
+          .then((data)=>{
+              
+              if(data.data.universityData){
+                data.data.universityData.map((obj)=>allNames.push(obj.name))
+              //  console.log(allNames)
+              }
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+
+
 export const json = {
-  "title": "Job Application Form",
-  "description": "Thank you for your interest in working with us. Please fill out the form and send your application. We will get back to you within a week.",
-  "logo": "https://api.surveyjs.io/private/Surveys/files?name=b4b071f2-c1f1-4887-a1de-8323825141b6",
+  "title": "CUF Questionnaire",
+  "description": "Please fill in the form to check your university eligility",
+  "logo": findLogo,
   "questionErrorLocation": "bottom",
   "logoHeight": "100px",
   "logoFit": "cover",
   "logoPosition": "right",
-  "elements": [{
-    "type": "panel",
-    "name": "personal-info",
-    "title": "Personal Information",
-    "elements": [{
-      "type": "text",
-      "name": "first-name",
-      "title": "First name",
-      "isRequired": true
-    }, {
-      "type": "text",
-      "name": "last-name",
-      "startWithNewLine": false,
-      "title": "Last name",
-      "isRequired": true
-    }, {
-      "type": "text",
-      "name": "birthdate",
-      "title": "Date of birth",
-      "inputType": "date",
-      "isRequired": true
-    }]
-  }, {
-    "type": "panel",
-    "name": "location",
-    "title": "Your Location",
-    "elements": [{
+  "elements": [
+    {
       "type": "dropdown",
-      "name": "country",
-      "title": "Country",
-      "choicesByUrl": {
-        "url": "https://surveyjs.io/api/CountriesExample"
-      }
-    }, {
+      "name": "cadStatus",
+      "title": "Are you a canadian or foreign student?",
+      "choices": [{
+                    "value": "canadian",
+                    "text": "Canadian Student"
+                  }, {
+                    "value": "foreign",
+                    "text": "Foreign Student"
+                  }],
+      "isRequired": true,
+    },
+    {
+      "type": "dropdown",
+      "name": "major",
+      "title": "What is your chosen major?",
+      "choices": [{
+                    "value": "engineering",
+                    "text": "Engineering"
+                  }, {
+                    "value": "science",
+                    "text": "Sciences"
+                  }, {
+                    "value": "commerce",
+                    "text": "Commerce/Business"
+                  }, {
+                    "value": "art",
+                    "text": "Art"
+                  }
+                ],
+      "isRequired": true,
+    },
+    {
+      "type": "dropdown",
+      "name": "grade",
+      "title": "What is your grade average?",
+      "choices": choice,
+      "isRequired": true,
+    },
+    {
+      "name": "tuition",
       "type": "text",
-      "name": "city",
-      "title": "City/Town"
-    }, {
-      "type": "text",
-      "name": "zip",
-      "startWithNewLine": false,
-      "title": "Zip code",
+      "title": "Enter your tuition budget (CAD $)",
+      "description": "No spaces or symbols",
       "inputType": "number",
+      "placeholder": "5000",
+      "isRequired": true,
       "validators": [{
         "type": "numeric"
       }]
-    }, {
-      "type": "text",
-      "name": "address",
-      "title": "Street address"
-    }]
-  }, {
-    "type": "text",
-    "name": "email",
-    "title": "Email",
-    "inputType": "email",
-    "placeholder": "mail@example.com"
-  }, {
-    "type": "text",
-    "name": "salary",
-    "title": "Expected salary (in US dollars)",
-    "inputType": "number",
-    "validators": [{
-      "type": "numeric"
-    }]
-  }, {
-    "type": "dropdown",
-    "name": "position",
-    "title": "What position are you applying for?",
-    "choices": [{
-      "value": "frontend",
-      "text": "Frontend Developer"
-    }, {
-      "value": "backend",
-      "text": "Backend Developer"
-    }, {
-      "value": "fullstack",
-      "text": "Full-Stack Developer"
-    }, {
-      "value": "intern",
-      "text": "Intern"
-    }]
-  }, {
-    "type": "text",
-    "name": "start-date",
-    "title": "Date available to start work",
-    "isRequired": true,
-    "inputType": "date"
-  }, {
-    "type": "file",
-    "name": "resume",
-    "title": "Upload your resume",
-    "acceptedTypes": "application/pdf"
-  }],
-  "showQuestionNumbers": false,
+    },
+    {
+      "type": "dropdown",
+      "name": "finalChoice",
+      "title": "Select your top university or view your best match",
+      "choices": [{
+                    "value": "top",
+                    "text": "Top University"
+                  }, {
+                    "value": "best",
+                    "text": "Best Match"
+                  }],
+      "isRequired": true,
+    },
+    {
+      "type": "dropdown",
+      "name": "university",
+      "description": "If you selected the best match above, skip this question",
+      "title": "Select your chosen university",
+      "choices": allNames,
+    },
+
+],
+  "showQuestionNumbers": true,
   "completeText": "Send",
   "widthMode": "static",
   "width": "800px"

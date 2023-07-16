@@ -31,7 +31,7 @@ const DashBoard = (props) => {
   
 
   /****GENERAL DASHBOARD SETUP & STRING MANIPULATION****/
-  const uniName = props.selectedUniversity
+  const uniName = props.selectedUniversity 
   const allData = props.generalData
 
 //   console.log(uniName)

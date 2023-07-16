@@ -12,7 +12,7 @@ export const json = {
     "elements": [
       {
         "type": "dropdown",
-        "name": "position",
+        "name": "cadStatus",
         "title": "Are you a canadian or foreign student?",
         "choices": [{
                       "value": "canadian",
@@ -25,7 +25,7 @@ export const json = {
       },
       {
         "type": "dropdown",
-        "name": "position",
+        "name": "major",
         "title": "What is your chosen major?",
         "choices": [{
                       "value": "engineering",
@@ -45,25 +45,25 @@ export const json = {
       },
       {
         "type": "dropdown",
-        "name": "position",
+        "name": "grade",
         "title": "What is your grade average?",
         "choices": choice,
         "isRequired": true,
       },
       {
-        "name": "number",
+        "name": "tuition",
         "type": "text",
         "title": "Enter your tuition budget",
         "description": "No spaces or symbols",
         "inputType": "number",
         "isRequired": true,
         "validators": [{
-          "type": "number",
+          "type": "numeric"
         }]
       },
       {
         "type": "dropdown",
-        "name": "position",
+        "name": "finalChoice",
         "title": "Select your top university or view your best match",
         "choices": [{
                       "value": "top",
@@ -76,7 +76,7 @@ export const json = {
       },
       {
         "type": "dropdown",
-        "name": "position",
+        "name": "university",
         "description": "If you selected the best match above, skip this question",
         "title": "Select your chosen university",
         "choices": allNames,
