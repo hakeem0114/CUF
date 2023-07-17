@@ -18,7 +18,8 @@ import universityData from '../api/getApi'
 
 /************3rd Page To give a summary of each university**********/
 const University = () => {
-
+  // const location = useLocation()
+  // console.log(location.pathname) // /CUF/Find/University
 
   /******HANDLE API CALL******/
   //console.log(universityData())
@@ -43,10 +44,6 @@ const University = () => {
 
   /******HANDLE DASHBOARD******/
   const[createDashBoard, setCreateDashBoard] = useState(false)
-
-  const location = useLocation()
-  const [fromUniversityPage, setFromUniversityPage] = useState('')
-  setFromUniversityPage(location.pathname)
 
 
   /******HANDLE FORM INPUT*******/

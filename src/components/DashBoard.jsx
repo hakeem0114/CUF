@@ -1,23 +1,13 @@
 /* eslint-disable react/prop-types */
-//Replaces the findCards after user has finished entering them
-
-// () loading circle to wait for dashboard with graphs to load
-
-//Add a redo/reset search button somewhere to go back university page
-
-// Circles with % and some recommendations like their top reccommended schools
-//Graph of something
-
-
 
 //React Imports
-//import { useLoaderData } from 'react-router-dom'
+// import { useLocation } from "react-router-dom"
 
 //Page Imports
 
 //Component Imports 
 
-import { useState } from "react"
+// import { useState } from "react"
 import Analytics from "./dashComponents/Analytics"
 import DashCard from "./dashComponents/DashCard"
 
@@ -25,21 +15,20 @@ import DashCard from "./dashComponents/DashCard"
 import { Triangle } from  'react-loader-spinner'
 
 
+
 //Api Imports
 
 
 /*********DASHBOARD SETUP*******/
 const DashBoard = (props) => {
+      // const location  = useLocation()
+      // const findPage = location.pathname
 
       const allData = props.generalData
       const allSurveyData = props.surveyData 
 
 /****RENDER TOP PICK OR BEST MATCH****/
 const bestMatchCAD = () => {
-      //const allCadTuition = allData.undergradTuition.split('-').pop().replace(/[$,]/g, '').trim()
-    //  const allForeignTuition = allData.undergradTuitionForeign.split('-').pop().replace(/[$,]/g, '').trim()
-      
-
       //Filter for the lowest tuition & student grade with new array
       const matchingUniversities = allData.filter((uni)=>{
             return uni.undergradTuition.split('-').pop().replace(/[$,]/g, '').trim()<= allSurveyData.tuition && uni.universityGeneralGrade <= allSurveyData.grade
@@ -55,7 +44,32 @@ const bestMatchCAD = () => {
             }
             return 0 //Same position if no change
       })
-      console.log(matchingUniversities)
+     // console.log(matchingUniversities)
+
+      //Get the top match
+      if (matchingUniversities.length > 0) {
+          return (matchingUniversities[0].name).includes('Université de')?(matchingUniversities[1].name) :'Algoma University' 
+      }else{
+          return 'Université de Hearst'
+      }
+}
+const bestMatchForeign = () => {
+      //Filter for the lowest tuition & student grade with new array
+      const matchingUniversities = allData.filter((uni)=>{
+            return uni.undergradTuitionForeign.split('-').pop().replace(/[$,]/g, '').trim()<= allSurveyData.tuition && uni.universityGeneralGrade <= allSurveyData.grade
+      })
+     // console.log(matchingUniversities)
+
+      //Sort based on rank in ascending order
+      matchingUniversities.sort((a,b)=>{
+            
+            //Sort if ranks are not the same
+            if (a.universityRank !== b.universityRank) {
+                  return a.universityRank - b.universityRank; // Higher rank first
+            }
+            return 0 //Same position if no change
+      })
+     // console.log(matchingUniversities)
 
       //Get the top match
       if (matchingUniversities.length > 0) {
@@ -72,7 +86,11 @@ const bestMatchCAD = () => {
       uniName = props.selectedUniversity
    }else{
       if(props.surveyData.finalChoice == 'best'){
-            uniName = bestMatchCAD()
+            if(props.surveyData.cadStatus == 'cad'){
+                  uniName = bestMatchCAD()
+            }else{
+                  uniName = bestMatchForeign()
+            }
         }else{
             uniName = props.selectedUniversity
         }
@@ -163,74 +181,91 @@ const bestMatchCAD = () => {
   /****GENERAL DASHBOARD SETUP & STRING MANIPULATION (FIND PAGE)****/     
       //uniName  & allData are the same props
       
-//      if(allSurveyData){
-                   //5th Card: Average
-                  // console.log(allSurveyData)
-                  // console.log(science, art, commerce, engineering)
-                  const majorGrade = ()=>{
-                        if(allSurveyData.major =='science'){
-                              return science
+      const lastCards = ()=>{
+            const majorGrade = ()=>{
+                  if(allSurveyData.major =='science'){
+                        return science
+                  }
+                  if(allSurveyData.major =='art'){
+                        return art
+                  }
+                  if(allSurveyData.major =='commerce'){
+                        return commerce
+                  }
+                  if(allSurveyData.major =='engineering'){
+                        return engineering
+                  }
+            }
+
+            const percentOff = (((majorGrade() - allSurveyData.grade) / majorGrade()) * 100).toFixed(2)
+            const majorContent = () =>{
+
+                  if(majorGrade()==0){
+                        return `This university has no ${allSurveyData.major} program` 
+                  }
+                  if(allSurveyData.grade >= majorGrade()){
+                  return `You pass the ${allSurveyData.major} average of ${majorGrade()}%` 
+                  }
+                  if(allSurveyData.grade < majorGrade()){
+                  return  `You are ${percentOff}% of the ${allSurveyData.major} average of ${majorGrade()}%`
+                  }
+                  
+            }
+            const gradeCard = majorContent()
+            // console.log(majorContent())
+
+
+      //6th Card: Tuition
+        //    console.log(allSurveyData)
+      //console.log(cadTuition, foreignTuition)
+      // const tuitionOff = (original, newGrade)=> ((original- newGrade) / original) * 100
+      const studentTuition = ()=>{
+                  //CAD
+                  if(allSurveyData.cadStatus == 'canadian'){
+                        if(cadTuition == 0){
+                              return `TBA` 
                         }
-                        if(allSurveyData.major =='art'){
-                              return art
+                        if(allSurveyData.tuition >= cadTuition){
+                              return `You can afford the tuition` 
                         }
-                        if(allSurveyData.major =='commerce'){
-                              return commerce
+                        if(allSurveyData.tuition < cadTuition){
+                        return  `You are $${cadTuition - allSurveyData.tuition} off the tuition amount.`
                         }
-                        if(allSurveyData.major =='engineering'){
-                              return engineering
+                  }else{
+                        //Foreign
+                        if(foreignTuition == 0){
+                              return `TBA` 
+                        }
+                        if(allSurveyData.tuition >= foreignTuition){
+                              return `You can afford the tuition` 
+                        }
+                        if(allSurveyData.tuition < foreignTuition){
+                        return  `You are $${foreignTuition - allSurveyData.tuition} off the tuition amount.`
                         }
                   }
-
-                  const percentOff = (((majorGrade() - allSurveyData.grade) / majorGrade()) * 100).toFixed(2)
-                  const majorContent = () =>{
-
-                        if(majorGrade()==0){
-                              return `This university has no ${allSurveyData.major} program` 
-                        }
-                        if(allSurveyData.grade >= majorGrade()){
-                        return `You pass the ${allSurveyData.major} average of ${majorGrade()}%` 
-                        }
-                        if(allSurveyData.grade < majorGrade()){
-                        return  `You are ${percentOff}% of the ${allSurveyData.major} average of ${majorGrade()}%`
-                        }
-                        
-                  }
-                  const gradeCard = majorContent()
-                  // console.log(majorContent())
-
-
-            //6th Card: Tuition
-              //    console.log(allSurveyData)
-            //console.log(cadTuition, foreignTuition)
-            // const tuitionOff = (original, newGrade)=> ((original- newGrade) / original) * 100
-            const studentTuition = ()=>{
-                        //CAD
-                        if(allSurveyData.cadStatus == 'canadian'){
-                              if(cadTuition == 0){
-                                    return `TBA` 
-                              }
-                              if(allSurveyData.tuition >= cadTuition){
-                                    return `You can afford the tuition` 
-                              }
-                              if(allSurveyData.tuition < cadTuition){
-                              return  `You are $${cadTuition - allSurveyData.tuition} off the tuition amount.`
-                              }
-                        }else{
-                              //Foreign
-                              if(foreignTuition == 0){
-                                    return `TBA` 
-                              }
-                              if(allSurveyData.tuition >= foreignTuition){
-                                    return `You can afford the tuition` 
-                              }
-                              if(allSurveyData.tuition < foreignTuition){
-                              return  `You are $${foreignTuition - allSurveyData.tuition} off the tuition amount.`
-                              }
-                        }
             }
             const tuitionCard = studentTuition()
-//      }
+
+            return(                              
+                        (
+                              <>
+                                    <DashCard
+                                          cardLabel = {allSurveyData.major}
+                                          cardContent={gradeCard}
+                                          color = 'text-yellow-400'
+                                    />
+                                    <DashCard
+                                          cardLabel = {'Tuition'}
+                                          cardContent={tuitionCard}
+                                          color = 'text-yellow-400'
+                                    />
+                              </>
+                        )
+            )
+      }
+
+            
+
 
 
       
@@ -282,22 +317,12 @@ const bestMatchCAD = () => {
                                 cardContent={rank}
                                 color = 'text-[#450a0a]'
                           />
+
                         {allSurveyData &&
-                        (
-                              <>
-                                    <DashCard
-                                          cardLabel = {allSurveyData.major}
-                                          cardContent={gradeCard}
-                                          color = 'text-yellow-400'
-                                    />
-                                    <DashCard
-                                          cardLabel = {'Tuition'}
-                                          cardContent={tuitionCard}
-                                          color = 'text-yellow-400'
-                                    />
-                              </>
-                        )
+                            
+                              lastCards()
                         }
+                        
       
                           
                   </div>
