@@ -76,12 +76,12 @@ const Questionnaire = () => {
   },[])
 
   return (
-    <div className=" overflow-auto w-full h-full  p-4">
+    <div className=" overflow-auto w-full h-full text-center  p-4  lg:w-11/12">
       {!surveyData &&(
-          <div className=' bg-white'>
+          <div className=' bg-white '>
               <Survey model={survey} />
     
-              <button onClick={handleClick} className=" ml-12 transition-all ease-in-out duration-300 p-7 mb-3 bg-purple-500 font-extrabold  rounded-2xl hover:scale-[1.02] hover:tracking-wider hover:bg-purple-300 ">
+              <button onClick={handleClick} className=" transition-all ease-in-out duration-300 p-7 mb-3 bg-purple-500 font-extrabold  rounded-2xl hover:scale-[1.02] hover:tracking-wider hover:bg-purple-300 ">
                           SUBMIT
               </button>
           </div>  

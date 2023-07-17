@@ -54,7 +54,7 @@ const Find = () => {
         {/****QUESTIONS**/}
         {eachUiversity && 
         (
-          <div className='absolute z-20  w-5/6 h-5/6 bg-bodyTurquoise border-2 border-zinc-500 flex justify-center items-center'> 
+          <div className='absolute z-20 w-3/5 h-5/6 bg-bodyTurquoise border-2 border-zinc-500 flex justify-center '> 
               <Questionnaire
                   universities = {eachUiversity}
               />
