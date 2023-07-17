@@ -1,9 +1,10 @@
 # CUF 
 
 An ontario university filter/eligibility parser for Canadian students.
--Gets information on your top university
--Lets the algorithm pick your best match
--Look for information on all available universities
+
+- Gets information on your top university
+- Lets the algorithm pick your best match
+- Look for information on all available universities
 
 
 ## App Features
