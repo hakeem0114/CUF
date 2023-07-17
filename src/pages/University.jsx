@@ -1,6 +1,6 @@
 //React Imports
 import { useEffect,useState } from 'react'
-//import { useLoaderData } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 //Page Imports
 
@@ -43,6 +43,10 @@ const University = () => {
 
   /******HANDLE DASHBOARD******/
   const[createDashBoard, setCreateDashBoard] = useState(false)
+
+  const location = useLocation()
+  const [fromUniversityPage, setFromUniversityPage] = useState('')
+  setFromUniversityPage(location.pathname)
 
 
   /******HANDLE FORM INPUT*******/

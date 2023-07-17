@@ -9,6 +9,7 @@ import Questionnaire from '../components/Questionnaire'
 
 //Style Imports
 import bodyImage from '../assets/bodyAssets/body.jpg'
+import { Triangle } from  'react-loader-spinner'
 
 //Api Imports
 import universityData from '../api/getApi'
@@ -51,11 +52,31 @@ const Find = () => {
 
 
         {/****QUESTIONS**/}
-       <div className='absolute z-20  w-5/6 h-5/6 bg-bodyTurquoise border-2 border-zinc-500 flex justify-center items-center'> 
-          <Questionnaire
-              universities = {eachUiversity}
-          />
-       </div>
+        {eachUiversity && 
+        (
+          <div className='absolute z-20  w-5/6 h-5/6 bg-bodyTurquoise border-2 border-zinc-500 flex justify-center items-center'> 
+              <Questionnaire
+                  universities = {eachUiversity}
+              />
+          </div>
+        )}
+        
+        {/***LOADING ITEM**/}
+          {!eachUiversity &&
+              (
+                  <div className='absolute text-bodyGold'>
+                      <Triangle
+                        height="300"
+                        width="300"
+                        color="#BFA181"
+                        ariaLabel="triangle-loading"
+                        wrapperStyle={{}}
+                        wrapperClassName=""
+                        visible={true}
+                      />
+                  </div>
+              )
+          }
     </div>
   )
 }
