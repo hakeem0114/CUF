@@ -2,6 +2,7 @@
 
 //React Imports
 // import { useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 //Page Imports
 
@@ -23,6 +24,10 @@ import { Triangle } from  'react-loader-spinner'
 const DashBoard = (props) => {
       // const location  = useLocation()
       // const findPage = location.pathname
+
+/**RANDOM DEPLOYMENT  ERROR FIX FOR GITHUB PAGES***/
+      //Refreshing page make github break.
+      const navigate = useNavigate()
 
       const allData = props.generalData
       const allSurveyData = props.surveyData 
@@ -273,7 +278,8 @@ const bestMatchForeign = () => {
   /****RESET BUTTON****/
   const handleClick= (e)=>{
       e.preventDefault()
-      window.location.reload();
+      
+      navigate(-1)
   }
 
 //console.log(uniName)
