@@ -22,13 +22,12 @@ import { Triangle } from  'react-loader-spinner'
 
 /*********DASHBOARD SETUP*******/
 const DashBoard = (props) => {
-      // const location  = useLocation()
-      // const findPage = location.pathname
 
-/**RANDOM DEPLOYMENT  ERROR FIX FOR GITHUB PAGES***/
-      //Refreshing page make github break.
+/**GITHUB PAGES BUG ON DEPLOYED PAGE: REFRESHING NOT WORKING ***/
+      //Refreshing page makes github break, try use navigate
       const navigate = useNavigate()
 
+      //Main Data
       const allData = props.generalData
       const allSurveyData = props.surveyData 
 
@@ -36,10 +35,12 @@ const DashBoard = (props) => {
 const bestMatchCAD = () => {
       //Filter for the lowest tuition & student grade with new array
       const matchingUniversities = allData.filter((uni)=>{
-            return uni.undergradTuition.split('-').pop().replace(/[$,]/g, '').trim()<= allSurveyData.tuition && uni.universityGeneralGrade <= allSurveyData.grade
+            if(uni.undergradTuition.length !==0 ){
+                  return uni.undergradTuition.split('-').pop().replace(/[$,]/g, '').trim()<= allSurveyData.tuition || uni.universityGeneralGrade <= allSurveyData.grade
+            }
+            
       })
-     // console.log(matchingUniversities)
-
+      
       //Sort based on rank in ascending order
       matchingUniversities.sort((a,b)=>{
             
@@ -53,17 +54,19 @@ const bestMatchCAD = () => {
 
       //Get the top match
       if (matchingUniversities.length > 0) {
-          return (matchingUniversities[0].name).includes('Université de')?(matchingUniversities[1].name) :'Algoma University' 
+          return (matchingUniversities[0].name) 
       }else{
-          return 'Université de Hearst'
+          return 'Algoma University'
       }
 }
 const bestMatchForeign = () => {
       //Filter for the lowest tuition & student grade with new array
       const matchingUniversities = allData.filter((uni)=>{
-            return uni.undergradTuitionForeign.split('-').pop().replace(/[$,]/g, '').trim()<= allSurveyData.tuition && uni.universityGeneralGrade <= allSurveyData.grade
+            if(uni.undergradTuitionForeign.length !==0 ){
+                  return uni.undergradTuitionForeign.split('-').pop().replace(/[$,]/g, '').trim()<= allSurveyData.tuition || uni.universityGeneralGrade <= allSurveyData.grade
+            }
+            
       })
-     // console.log(matchingUniversities)
 
       //Sort based on rank in ascending order
       matchingUniversities.sort((a,b)=>{
@@ -74,13 +77,13 @@ const bestMatchForeign = () => {
             }
             return 0 //Same position if no change
       })
-     // console.log(matchingUniversities)
+
 
       //Get the top match
       if (matchingUniversities.length > 0) {
-          return (matchingUniversities[0].name).includes('Université de')?(matchingUniversities[1].name) :'Algoma University' 
+          return (matchingUniversities[0].name)
       }else{
-          return 'Université de Hearst'
+            return 'Algoma University'
       }
 }
 
@@ -108,7 +111,7 @@ const bestMatchForeign = () => {
       if(data.name.includes(uniName)) return data
   })
 
- // console.log(selectedUniversityData)
+
 
   //1st card: Branches
       const branch =  ((selectedUniversityData.universityMainBranch =='')?'TBA':`${selectedUniversityData.universityMainBranch}` ) +
