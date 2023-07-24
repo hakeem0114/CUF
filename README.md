@@ -26,12 +26,13 @@ An ontario university filter/eligibility parser for Canadian students.
   Loader between API calls
 ```
 
-### Dashboard (3rd Search Page)
+### Dashboards
 ![dashboard1](./src/assets/readmeAssets/dashboard1Readme.png "dashboard1")
 ![dashboard2](./src/assets/readmeAssets/dashboard2Readme.png "dashboard2")
 
 ```
-  Populates cards, doughnut & bar charts
+  Dynamic dashboards which populates cards, doughnut & bar charts based 
+  on selected options: best match (algorithm) or selected university
 ```
 
 
