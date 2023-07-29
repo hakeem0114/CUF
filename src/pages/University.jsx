@@ -1,6 +1,6 @@
 //React Imports
-import { useEffect,useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { UniversityContext } from '../App'
 
 //Page Imports
 
@@ -12,35 +12,14 @@ import bodyImage from '../assets/bodyAssets/body2.jpg'
 import { Triangle } from  'react-loader-spinner'
 
 //Api Imports
-import universityData from '../api/getApi'
+//import universityData from '../api/getApi'
 
 
 
 /************3rd Page To give a summary of each university**********/
 const University = () => {
-  // const location = useLocation()
-  // console.log(location.pathname) // /CUF/Find/University
 
-  /******HANDLE API CALL******/
-  //console.log(universityData())
-  const [eachUiversity, setUniversityData] = useState(null)
-
-  //Render once on page load
-  useEffect(()=>{
-
-    universityData()
-      .then((data)=>{
-          
-          if(data.data.universityData){
-            setUniversityData(data.data.universityData)
-          }
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
-
+  const eachUiversity = useContext(UniversityContext);
 
   /******HANDLE DASHBOARD******/
   const[createDashBoard, setCreateDashBoard] = useState(false)
@@ -88,7 +67,7 @@ const University = () => {
     <div className='relative z-0 flex justify-center items-center'>
        <img className=' z-0 w-full h-screen object-cover' src={bodyImage} alt="bodyImage" /> 
 
-                    {/****SEARCH BAR TO RENDER DASHBOARD***/}
+      {/****SEARCH BAR TO RENDER DASHBOARD***/}
       {eachUiversity &&
         (
           <>

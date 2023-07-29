@@ -1,5 +1,7 @@
 //React Imports
-import { useEffect,useState } from 'react'
+import { useContext } from 'react'
+import { UniversityContext } from '../App'
+
 
 //Page Imports
 
@@ -12,39 +14,12 @@ import bodyImage from '../assets/bodyAssets/body.jpg'
 import { Triangle } from  'react-loader-spinner'
 
 //Api Imports
-import universityData from '../api/getApi'
+//import universityData from '../api/getApi'
 
 
 /************MAIN PAGE WITH UI**********/
 const Find = () => {
-
-    /******HANDLE API CALL******/
-  //console.log(universityData())
-  const [eachUiversity, setUniversityData] = useState(null)
-
-  //Render once on page load
-  useEffect(()=>{
-
-    universityData()
-      .then((data)=>{
-          
-          if(data.data.universityData){
-            setUniversityData(data.data.universityData)
-          }
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
-
-  /*****QUESTIONNAIRE ****/
-
-  /*****OPTION A: TOP 3 PICKS BY US OR****/
-
-  /*****OPTION B: SELECT YOUR 1ST CHOICE****/
-
-
+  const eachUiversity = useContext(UniversityContext);
 
   return (
     <div className='relative z-0 flex justify-center items-center'>

@@ -1,4 +1,6 @@
 //React Imports
+import { createContext, useEffect, useState } from 'react';
+
 //import { useEffect, useState } from 'react'
 import {
   createBrowserRouter,
@@ -26,8 +28,8 @@ import Footer from './components/Footer'
 import './App.css'
 
 //Api Imports
-//import universityData from './api/getApi'
-
+import universityData from './api/getApi'
+export const UniversityContext = createContext();
 
 
 
@@ -69,11 +71,35 @@ const router = createBrowserRouter(
 
 
 
+
+  /******HANDLE API CALL******/
+  //console.log(universityData())
+  const [eachUiversity, setUniversityData] = useState(null)
+
+  //Render once on page load
+  useEffect(()=>{
+
+    universityData()
+      .then((data)=>{
+          
+          if(data.data.universityData){
+            setUniversityData(data.data.universityData)
+          }
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
   return (
     <div className='scroll-smooth ' >
-        <RouterProvider 
-            router={router} 
-        />         
+        <UniversityContext.Provider value={eachUiversity}>
+            <RouterProvider 
+                router={router} 
+            />  
+        </UniversityContext.Provider>
+       
     </div>
   )
 }

@@ -29,7 +29,7 @@ An ontario university filter/eligibility parser for Canadian students.
 ### Dashboards
 ![dashboard1](./src/assets/readmeAssets/dashboard1Readme.png "dashboard1")
 ![dashboard2](./src/assets/readmeAssets/dashboard2Readme.png "dashboard2")
-
+![dashboard3](./src/assets/readmeAssets/dashboard3Readme.png "dashboard3")
 ```
   Dynamic dashboards which populates cards, doughnut & bar charts based 
   on selected options: best match (algorithm) or selected university
@@ -51,6 +51,13 @@ Cheerio, Node, Express, Axios
 ``` 
 
 ## Packages, Libraries, Techonolgies & APIs Used
+
+React UseContext
+```
+    Refactored code to reduce number of API calls, lines of code & speed of data
+    load to enhance end-user experience. 
+```
+
 Chart.js
 ```
     Used to create doughnut & bar charts
@@ -95,6 +102,11 @@ React Toastify to handle notifications
 
 
 ## Challenges
+
+Efficiency 
+```
+Refactored code to make use of lazy loading & react useContext to improve load speed of the full-stack application.
+```
 
 Web-Scraping & compiling the data before deploying the REST API
 ```
