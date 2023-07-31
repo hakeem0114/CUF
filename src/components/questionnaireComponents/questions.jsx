@@ -18,8 +18,8 @@ const allNames = []
          universityData()
           .then((data)=>{
               
-              if(data.data.universityData){
-                data.data.universityData.map((obj)=>allNames.push(obj.name))
+              if(data.data){
+                data.data.map((obj)=>allNames.push(obj.name))
               //  console.log(allNames)
               }
           })

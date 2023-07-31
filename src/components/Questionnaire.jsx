@@ -1,6 +1,6 @@
 //React Imports
 //import { useLoaderData } from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 
 //Page Imports
 
@@ -11,7 +11,7 @@ import DashBoard from './DashBoard';
 
 
 //Api Imports
-import universityData from '../api/getApi'
+//import universityData from '../api/getApi'
 
 
 //Survey.js Imports
@@ -23,6 +23,9 @@ import {json} from './questionnaireComponents/questions'
 //React Toastify for notifications Imports
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+
+import { UniversityContext } from '../App'
+
 
 
 const Questionnaire = () => {
@@ -55,25 +58,8 @@ const Questionnaire = () => {
     
   }
 
-    /******HANDLE API CALL******/
-  //console.log(universityData())
-  const [eachUiversity, setUniversityData] = useState(null)
-
-  //Render once on page load
-  useEffect(()=>{
-
-    universityData()
-      .then((data)=>{
-          
-          if(data.data.universityData){
-            setUniversityData(data.data.universityData)
-          }
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  /***API DATA***/
+  const eachUiversity = useContext(UniversityContext);
 
   return (
     <div className=" overflow-auto w-full h-full text-center  p-4  lg:w-11/12">

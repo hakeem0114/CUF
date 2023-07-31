@@ -215,7 +215,7 @@ const bestMatchForeign = () => {
                   return `You pass the ${allSurveyData.major} average of ${majorGrade()}%` 
                   }
                   if(allSurveyData.grade < majorGrade()){
-                  return  `You are ${percentOff}% of the ${allSurveyData.major} average of ${majorGrade()}%`
+                  return  `You are ${percentOff}% off the ${allSurveyData.major} average of ${majorGrade()}%`
                   }
                   
             }
