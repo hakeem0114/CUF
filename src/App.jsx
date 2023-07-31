@@ -79,11 +79,12 @@ const router = createBrowserRouter(
   //Render once on page load
   useEffect(()=>{
 
+    
     universityData()
       .then((data)=>{
-          
-          if(data.data.universityData){
-            setUniversityData(data.data.universityData)
+          if(data.data){
+           // console.log(data.data)
+            setUniversityData(data.data)
           }
       })
       .catch((error)=>{
