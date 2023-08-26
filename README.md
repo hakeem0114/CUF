@@ -103,6 +103,13 @@ React Toastify to handle notifications
 
 ## Challenges
 
+Efficiency #2 
+```
+Put data in Firebase Real Time Deployment Cloud Database.
+Made the server stateless to make my server's API truly RESTFUL.
+This reduced API call from time from 10 seconds to <0.5 seconds
+```
+
 Efficiency 
 ```
 Refactored code to make use of lazy loading & react useContext to improve load speed of the full-stack application.

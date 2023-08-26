@@ -17,7 +17,7 @@ const choice  = gradeRange.map((value)=>(
 const allNames = []
          universityData()
           .then((data)=>{
-              
+              //console.log(data)
               if(data.data){
                 data.data.map((obj)=>allNames.push(obj.name))
               //  console.log(allNames)

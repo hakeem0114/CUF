@@ -73,17 +73,14 @@ const router = createBrowserRouter(
 
 
   /******HANDLE API CALL******/
-  //console.log(universityData())
   const [eachUiversity, setUniversityData] = useState(null)
 
   //Render once on page load
   useEffect(()=>{
-
-    
     universityData()
       .then((data)=>{
           if(data.data){
-           // console.log(data.data)
+          //console.log(data.data)
             setUniversityData(data.data)
           }
       })

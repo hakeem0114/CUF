@@ -34,7 +34,7 @@ const Home = () => {
           <div className=' rounded-yellow-700 flex flex-col items-center justify-center rounded-full bg-[#e7e5e4] w-32 h-32 shadow-lg shadow-amber-200'>
                   <Link to='/CUF/Find'>
                       <FiPower 
-                        className=' text-rose-700 transition duration-500 ease-in-out animate-bounce animate-pulse hover:text-green-600 hover:scale-105'
+                        className=' text-rose-700 transition duration-500 ease-in-out  animate-pulse hover:text-green-600 hover:scale-105'
                         size={50}
                       />
 
